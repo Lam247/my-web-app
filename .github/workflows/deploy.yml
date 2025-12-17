@@ -1,0 +1,15 @@
+name: Deploy My Web App
+
+on:
+  push:
+    branches:
+      - main # Chạy khi bạn push code lên nhánh chính của repo Lam247/my-web-app
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Trigger Render Deploy
+        # RENDER_DEPLOY_HOOK cần được cài đặt trong GitHub Secrets
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
